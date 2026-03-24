@@ -25,7 +25,7 @@ services:
     environment:
       REDIS_HOST: redis
       REDIS_PORT: 6379
-      GITHUB_TOKEN:
+      GITHUB_TOKEN: ${TOKEN}
       TOP_REPOS: 30
       REPO_DELAY: 2
       CYCLE_DELAY: 5
