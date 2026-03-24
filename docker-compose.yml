@@ -1,0 +1,47 @@
+services:
+
+  redis:
+    image: redis:7-alpine
+    container_name: gmm-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    command: redis-server --appendonly yes
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+
+  miner:
+    build: ./miner
+    container_name: gmm-miner
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+      GITHUB_TOKEN:
+      TOP_REPOS: 30
+      REPO_DELAY: 2
+      CYCLE_DELAY: 5
+
+  visualizer:
+    build: ./visualizer
+    container_name: gmm-visualizer
+    restart: unless-stopped
+    depends_on:
+      redis:
+        condition: service_healthy
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: 6379
+    ports:
+      - "5000:5000"
+
+volumes:
+  redis_data:
