@@ -96,16 +96,14 @@ github-miner/
 ├── docker-compose.yml
 ├── README.md
 ├── miner/
-│   ├── .venv
 │   ├── Dockerfile
 │   ├── requirements.txt
 │   └── miner.py
 └── visualizer/
-│   ├── .venv
-    ├── Dockerfile
-    ├── requirements.txt
-    ├── app.py
-    └── templates/
-        └── index.html
+│   ├── Dockerfile
+│   ├── requirements.txt
+│   ├── app.py
+│   └── templates/
+│   │  └── index.html
 ```
 
