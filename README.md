@@ -13,6 +13,7 @@ Herramienta que extrae y visualiza en tiempo real las palabras más usadas en no
 ---
 
 ## Inicio rápido
+Copiar el .env a la raiz del proyecto
 
 Comando para iniciar docker compose:
 ```bash
